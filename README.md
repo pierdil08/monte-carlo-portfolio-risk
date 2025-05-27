@@ -18,18 +18,6 @@ This project uses Monte Carlo methods to simulate the behavior of a portfolio ov
 - NumPy, Pandas
 - Matplotlib, Seaborn
 
-## 📁 Structure
-monte-carlo-portfolio-risk/
-├── src/
-│ └── simulate.py
-├── notebook/
-│ └── analysis.ipynb
-├── plots/
-│ └── returns_hist.png
-├── README.md
-└── requirements.txt
-
-
 ## 🚀 How to Run
 
 ```bash

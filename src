@@ -1,4 +1,44 @@
+#Import libraries
 import numpy as np
-import matplotlib as plt
+import pandas as pd
+import matplotlib.pyplot as plt
+
+#get dataset
+
+df = pd.read_csv(dataset, parse_dates = True, index_col = 'Date')
+
+#simulate future paths
+
+# Monte carlo predicts set of outcomes based on estimated range of values vs set of fixed input values. 
+# Uses random sampling of information to solve a statistical problem
+# used to measure risk and understand the impact of risk and uncertainty in various forcasting models
+# shows the probabilities of various outcomes including the process and use
+
+# back to simulating
+
+# simulation parameters (how many and how far we want to forcast)
+num_simulations = 10
+forcast_days = 365
+
+# initialize the simulation array with all zeros
+ simulations = np.zeros((num_simulations,forcast_days))
+
+#get last adjusted close price
+last_price = df['Adj Close'].iloc[-1]
+
+#calculate daily returns and drop and remove any na values
+daily_returns = df['Adj Close'].pct_change().dropna()
+
+#loop through number of simulations to forcast future cumulative returns for assest
+for i in range(num_simulations):
+      #get random daily returns of size forcast days and return cumulative return
+      #return an array of size forcast_days that contains randomly selected daily returns and calculate cumulative return
+      cumulative_returns = np.random.choice(daily_returns, size = forcast_days, replace = True).cumsum()
+      #get simulations with random cumulative returns
+      simulations[i,:] = last_price * (1+cumulative_returns)
+
+print(simulations)
+
+
 
 
